@@ -18,5 +18,13 @@ allprojects {
     }
 }
 
+android {
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
+  }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
