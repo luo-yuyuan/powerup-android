@@ -30,8 +30,11 @@ android:
     - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-17
 script:
- - chmod +x ./gradlew    
+ - chmod +x ./gradlew
+ — ./gradlew build jacocoTestReport
 notifications:
   email:
     recipients:
       - sasachin04@gmail.com
+after_success: 
+  — bash <(curl -s https://codecov.io/bash)
