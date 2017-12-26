@@ -16,6 +16,11 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
     }
 
     buildTypes {
@@ -40,4 +45,10 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:23.3.0'
     compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
     testCompile 'com.google.truth:truth:0.32'
+}
+
+jacocoAndroidUnitTestReport {
+  csv.enabled false
+  html.enabled true
+  xml.enabled true
 }
