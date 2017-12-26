@@ -31,6 +31,10 @@ android:
     - sys-img-armeabi-v7a-android-17
 script:
  - chmod +x ./gradlew
- - ./gradlew build jacocoTestReport
+ - ./gradlew build jacocoTestReport assembleAndroidTest
+ - android-wait-for-emulator
+ - adb devices
+ - adb shell input keyevent 82 &
+ - ./gradlew connectedCheck
 after_success: 
  - bash <(curl -s https://codecov.io/bash)
