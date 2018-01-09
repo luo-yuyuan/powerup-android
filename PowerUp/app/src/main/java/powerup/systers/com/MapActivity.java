@@ -7,12 +7,16 @@ package powerup.systers.com;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import powerup.systers.com.db.DatabaseHandler;
 import powerup.systers.com.minesweeper.MinesweeperGameActivity;
@@ -56,6 +60,12 @@ public class MapActivity extends Activity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SimpleDateFormat date =
+                new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
+        String logDate = date.format(new Date());
+        Debug.startMethodTracing(
+                "start-" + logDate);
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -115,7 +125,7 @@ public class MapActivity extends Activity {
             libraryBuilding.setImageDrawable(getResources().getDrawable(R.drawable.library_colored));
             library.setEnabled(true);
         }
-
+        Debug.stopMethodTracing();
     }
 
     public DatabaseHandler getmDbHandler() {

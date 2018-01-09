@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Debug;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -22,6 +23,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class StartActivity extends Activity {
 
@@ -34,6 +38,13 @@ public class StartActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SimpleDateFormat date =
+                new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
+        String logDate = date.format(new Date());
+        Debug.startMethodTracing(
+                "start-" + logDate);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = StartActivity.this;
@@ -85,6 +96,7 @@ public class StartActivity extends Activity {
                 startActivity(new Intent(StartActivity.this, AboutActivity.class));
             }
         });
+        Debug.stopMethodTracing();
 
     }
 
